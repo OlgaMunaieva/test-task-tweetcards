@@ -10,7 +10,7 @@ import {
   LogoContainer,
   TextFollowers,
   TextTweets,
-} from "./Tweetcard.styled";
+} from "./UserCard.styled";
 import { useState } from "react";
 
 export const Tweetcard = () => {

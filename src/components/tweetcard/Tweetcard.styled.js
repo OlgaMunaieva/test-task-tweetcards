@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { styled } from "styled-components";
 
 export const CardBackground = styled.div`
@@ -89,14 +90,19 @@ export const Button = styled.button`
   /* flex-direction: row; */
   justify-content: center;
   align-items: center;
-  padding: 14px 56px;
+  /* padding: 14px 56px; */
   /* gap: 6px; */
 
   /* position: absolute; */
-  min-width: 196px;
-  min-height: 50px;
+  width: 196px;
+  height: 50px;
 
-  background: #ebd8ff;
+  text-transform: uppercase;
+
+  /* background: ${({ isFollow }) => {
+    return isFollow ? "#5CD3A8" : "#ebd8ff";
+  }}; */
+  /* #ebd8ff; */
   box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.25);
   border-radius: 10.3108px;
 `;

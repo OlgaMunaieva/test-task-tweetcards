@@ -1,7 +1,6 @@
-
 import { styled } from "styled-components";
 
-export const CardBackground = styled.div`
+export const CardBackground = styled.li`
   position: relative;
   width: 380px;
   height: 460px;

@@ -1,6 +1,7 @@
 import picture from "../../images/background-picture.png";
 import logo from "../../images/logo.png";
 import frame from "../../images/frame.png";
+import PropTypes from "prop-types";
 import {
   BackgroundPicture,
   Button,
@@ -13,15 +14,14 @@ import {
 } from "./UserCard.styled";
 import { useState } from "react";
 
-export const Tweetcard = () => {
+export const UserCard = ({ user: { followers, tweets, user } }) => {
+  console.log(user);
   const [isFollow, setIsFollow] = useState(false);
-  const [followersLength, setFollowersLength] = useState(100500);
-  console.log(isFollow);
+  // const [followersLength, setFollowersLength] = useState(100500);
+  // console.log(isFollow);
 
   const handelOnClick = () => {
-    isFollow
-      ? setFollowersLength((count) => count - 1)
-      : setFollowersLength((count) => count + 1);
+    isFollow ? followers - 1 : followers - 1;
 
     setIsFollow((prev) => !prev);
   };
@@ -41,10 +41,10 @@ export const Tweetcard = () => {
         <img src={frame} alt="frame" width={80} height={80} />
       </FrameContainer>
       <TextTweets>
-        <span>777</span> tweets
+        <span>{formatNumber(tweets)}</span> tweets
       </TextTweets>
       <TextFollowers>
-        <span>{formatNumber(followersLength)}</span> Followers
+        <span>{formatNumber(followers)}</span> Followers
       </TextFollowers>
       <Button
         style={{ background: isFollow ? "#5CD3A8" : "#ebd8ff" }}
@@ -54,4 +54,14 @@ export const Tweetcard = () => {
       </Button>
     </CardBackground>
   );
+};
+
+UserCard.propTypes = {
+  user: PropTypes.objectOf(
+    PropTypes.shape({
+      followers: PropTypes.number,
+      tweets: PropTypes.number,
+      user: PropTypes.string,
+    })
+  ).isRequired,
 };

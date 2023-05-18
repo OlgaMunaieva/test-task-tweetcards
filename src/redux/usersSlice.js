@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { fetchUsers } from "./userOperations";
+import { fetchUsers, toggleFollowing } from "./userOperations";
 
 const STATUS = {
   PENDING: "pending",
@@ -7,7 +7,7 @@ const STATUS = {
   REJECTED: "rejected",
 };
 
-const arrThunks = [fetchUsers];
+const arrThunks = [fetchUsers, toggleFollowing];
 
 const getActions = (type) => isAnyOf(...arrThunks.map((thunk) => thunk[type]));
 
@@ -35,6 +35,11 @@ const handleFulfilledGet = (state, action) => {
   state.items = action.payload;
 };
 
+const handleFulfilledToggleFollowing = (state, action) => {
+  const index = state.items.findIndex((user) => user.id === action.payload.id);
+  state.items[index] = action.payload;
+};
+
 const usersSlice = createSlice({
   name: "users",
   initialState: initialState,
@@ -43,6 +48,7 @@ const usersSlice = createSlice({
     const { FULFILLED, REJECTED, PENDING } = STATUS;
     builder
       .addCase(fetchUsers.fulfilled, handleFulfilledGet)
+      .addCase(toggleFollowing.fulfilled, handleFulfilledToggleFollowing)
       .addMatcher(getActions(PENDING), handlePending)
       .addMatcher(getActions(REJECTED), handleRejected)
       .addMatcher(getActions(FULFILLED), handleFulfilled);

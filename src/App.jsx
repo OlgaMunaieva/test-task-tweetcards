@@ -2,7 +2,8 @@
 // import reactLogo from "./assets/react.svg";
 // import viteLogo from "/vite.svg";
 import "./App.css";
-import { Tweetcard } from "./components/userCard/UserCard";
+import { UserCard } from "./components/userCard/UserCard";
+import UserstList from "./components/usersList/UsersList";
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -29,7 +30,7 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p> */}
-      <Tweetcard />
+      <UserstList />
     </>
   );
 }

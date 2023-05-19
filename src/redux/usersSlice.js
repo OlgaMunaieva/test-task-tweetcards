@@ -43,7 +43,22 @@ const handleFulfilledToggleFollowing = (state, action) => {
 const usersSlice = createSlice({
   name: "users",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    increaseFollowers: (state, action) => {
+      const itemId = action.payload;
+      const item = state.items.find((item) => item.id === itemId);
+      if (item) {
+        item.followers += 1;
+      }
+    },
+    decreaseFollowers: (state, action) => {
+      const itemId = action.payload;
+      const item = state.items.find((item) => item.id === itemId);
+      if (item) {
+        item.followers -= 1;
+      }
+    },
+  },
   extraReducers: (builder) => {
     const { FULFILLED, REJECTED, PENDING } = STATUS;
     builder
@@ -55,4 +70,5 @@ const usersSlice = createSlice({
   },
 });
 
+export const { increaseFollowers, decreaseFollowers } = usersSlice.actions;
 export const usersReducer = usersSlice.reducer;

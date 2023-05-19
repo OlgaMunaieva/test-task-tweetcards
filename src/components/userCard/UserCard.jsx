@@ -17,30 +17,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { addFollowId, excludeFollowId } from "../../redux/followerOfSlice";
 import { toggleFollowing } from "../../redux/operations";
 import { decreaseFollowers, increaseFollowers } from "../../redux/usersSlice";
+import { useEffect } from "react";
+import { store } from "../../redux/store";
 
 export const UserCard = ({ tweets, followers, avatar, id, isFollow }) => {
   const followerOf = useSelector(selectFollowerOf);
-  console.log(followerOf.includes(id));
-  console.log(isFollow);
   const dispatch = useDispatch();
-  console.log(id);
-  // const [isFollow, setIsFollow] = useState(false);
-  // const [followersLength, setFollowersLength] = useState(100500);
-  // console.log(isFollow);
 
   const handelOnClick = () => {
-    // dispatch(addFollowId(id));
     followerOf.includes(id)
       ? dispatch(excludeFollowId(id))
       : dispatch(addFollowId(id));
     isFollow
       ? dispatch(decreaseFollowers(id))
       : dispatch(increaseFollowers(id));
-    // dispatch(toggleFollowing(id));
-    // isFollow = !isFollow;
-    // isFollow ? followers - 1 : followers - 1;
-
-    // setIsFollow((prev) => !prev);
+    toggleFollowing(id);
+    
   };
 
   const formatNumber = (number) => {

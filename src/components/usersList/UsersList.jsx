@@ -6,14 +6,11 @@ import { UserCard } from "../userCard/UserCard";
 
 const UserstList = () => {
   const usersWithFollowerOf = useSelector(selectUsersWithFollowerOf);
-  console.log(usersWithFollowerOf);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
-
-  //   const onDelete = (id) => dispatch(deleteContact(id));
 
   return (
     <ul>

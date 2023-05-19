@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { fetchUsers, toggleFollowing } from "./userOperations";
+import { fetchUsers, toggleFollowing } from "./operations";
 
 const STATUS = {
   PENDING: "pending",

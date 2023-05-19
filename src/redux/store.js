@@ -10,18 +10,18 @@ import {
   persistStore,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
-import { usersReducer } from "./usersSlice";
+import { reducer } from "./reduser";
 
 const persistConfig = {
-  key: "users",
+  key: "followerOf",
   storage,
-  whitelist: ["users"],
+  whitelist: ["followerOf"],
 };
 
-const persistedReducer = persistReducer(persistConfig, usersReducer);
+const persistedReducer = persistReducer(persistConfig, reducer);
 
 export const store = configureStore({
-  reducer: { users: persistedReducer },
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

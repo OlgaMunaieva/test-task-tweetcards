@@ -12,18 +12,25 @@ import {
   TextFollowers,
   TextTweets,
 } from "./UserCard.styled";
-import { useState } from "react";
+import { selectFollowerOf } from "../../redux/selectors";
+import { useDispatch, useSelector } from "react-redux";
+import { addFollowId } from "../../redux/followerOfSlice";
 
-export const UserCard = ({ user: { followers, tweets, user } }) => {
-  console.log(user);
-  const [isFollow, setIsFollow] = useState(false);
+export const UserCard = ({ tweets, followers, avatar, id, isFollow }) => {
+  const followerOf = useSelector(selectFollowerOf);
+  console.log(followerOf);
+  console.log(isFollow);
+  const dispatch = useDispatch();
+  console.log(id);
+  // const [isFollow, setIsFollow] = useState(false);
   // const [followersLength, setFollowersLength] = useState(100500);
   // console.log(isFollow);
 
   const handelOnClick = () => {
-    isFollow ? followers - 1 : followers - 1;
+    dispatch(addFollowId(id));
+    // isFollow ? followers - 1 : followers - 1;
 
-    setIsFollow((prev) => !prev);
+    // setIsFollow((prev) => !prev);
   };
 
   const formatNumber = (number) => {
@@ -38,7 +45,7 @@ export const UserCard = ({ user: { followers, tweets, user } }) => {
       <BackgroundPicture src={picture} alt="picture" width={308} height={168} />
       <Line></Line>
       <FrameContainer>
-        <img src={frame} alt="frame" width={80} height={80} />
+        <img src={avatar} alt="frame" width={80} height={80} />
       </FrameContainer>
       <TextTweets>
         <span>{formatNumber(tweets)}</span> tweets
@@ -57,11 +64,9 @@ export const UserCard = ({ user: { followers, tweets, user } }) => {
 };
 
 UserCard.propTypes = {
-  user: PropTypes.objectOf(
-    PropTypes.shape({
-      followers: PropTypes.number,
-      tweets: PropTypes.number,
-      user: PropTypes.string,
-    })
-  ).isRequired,
+  followers: PropTypes.number.isRequired,
+  tweets: PropTypes.number.isRequired,
+  avatar: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  isFollow: PropTypes.bool.isRequired,
 };

@@ -1,3 +1,4 @@
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUsersWithFollowerOf } from "../../redux/selectors";
 import PropTypes from "prop-types";
@@ -5,15 +6,12 @@ import { useEffect } from "react";
 import { fetchUsers } from "../../redux/operations";
 import { UserCard } from "../userCard/UserCard";
 import { MainContainer } from "./UsersList.styled";
-import installHook from "../../redux/installHook";
+// import installHook from "../../redux/installHook";
 
-const UsersList = ({ page }) => {
+const UsersList = () => {
+  // const location = useLocation();
   const usersWithFollowerOf = useSelector(selectUsersWithFollowerOf);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchUsers(page));
-  }, [dispatch, page]);
+  // const dispatch = useDispatch();
 
   return (
     <MainContainer>
@@ -34,9 +32,9 @@ const UsersList = ({ page }) => {
   );
 };
 
-UsersList.propTypes = {
-  page: PropTypes.number.isRequired,
-};
+// UsersList.propTypes = {
+//   page: PropTypes.number.isRequired,
+// };
 
 export default UsersList;
 

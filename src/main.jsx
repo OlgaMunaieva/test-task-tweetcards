@@ -8,11 +8,11 @@ import { persistor, store } from "./redux/store.js";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  // <BrowserRouter basename="/test-task-tweetcards">
-  <Provider store={store}>
-    <PersistGate persistor={persistor}>
-      <App />
-    </PersistGate>
-  </Provider>
-  // </BrowserRouter>
+  <BrowserRouter basename="/test-task-tweetcards">
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <App />
+      </PersistGate>
+    </Provider>
+  </BrowserRouter>
 );

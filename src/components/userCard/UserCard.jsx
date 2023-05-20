@@ -3,6 +3,8 @@ import logo from "../../images/logo.png";
 import frame from "../../images/frame.png";
 import PropTypes from "prop-types";
 import {
+  Avatar,
+  AvatarContainer,
   BackgroundPicture,
   Button,
   CardBackground,
@@ -12,16 +14,15 @@ import {
   TextFollowers,
   TextTweets,
 } from "./UserCard.styled";
-import { selectFollowerOf } from "../../redux/selectors";
+import { selectFollowerOf, selectUsers } from "../../redux/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { addFollowId, excludeFollowId } from "../../redux/followerOfSlice";
-import { toggleFollowing } from "../../redux/operations";
+import { updateUser } from "../../redux/operations";
 import { decreaseFollowers, increaseFollowers } from "../../redux/usersSlice";
-import { useEffect } from "react";
-import { store } from "../../redux/store";
 
 export const UserCard = ({ tweets, followers, avatar, id, isFollow }) => {
   const followerOf = useSelector(selectFollowerOf);
+  const users = useSelector(selectUsers);
   const dispatch = useDispatch();
 
   const handelOnClick = () => {
@@ -31,8 +32,21 @@ export const UserCard = ({ tweets, followers, avatar, id, isFollow }) => {
     isFollow
       ? dispatch(decreaseFollowers(id))
       : dispatch(increaseFollowers(id));
-    toggleFollowing(id);
-    
+    // fetch(`https://64540bc3e9ac46cedf3665cc.mockapi.io/users/${id}`, {
+    //   method: "PUT", // or PATCH
+    //   headers: { "content-type": "application/json" },
+    //   body: JSON.stringify({ followers: users[id].followers + 1 }),
+    // })
+    //   .then((res) => {
+    //     console.log(res);
+    //     if (res.ok) {
+    //       return res.json();
+    //     }
+    //     throw new Error("Error");
+    //   })
+    //   .catch((e) => {
+    //     alert(e);
+    //   });
   };
 
   const formatNumber = (number) => {
@@ -47,7 +61,10 @@ export const UserCard = ({ tweets, followers, avatar, id, isFollow }) => {
       <BackgroundPicture src={picture} alt="picture" width={308} height={168} />
       <Line></Line>
       <FrameContainer>
-        <img src={avatar} alt="frame" width={80} height={80} />
+        <AvatarContainer>
+          <Avatar src={avatar} alt="frame" width={56} height={56} />
+        </AvatarContainer>
+        <img src={frame} alt="frame" width={80} height={80} />
       </FrameContainer>
       <TextTweets>
         <span>{formatNumber(tweets)}</span> tweets

@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { fetchUsers, toggleFollowing } from "./operations";
+import { fetchUsers, updateUser } from "./operations";
 
 const STATUS = {
   PENDING: "pending",
@@ -7,7 +7,7 @@ const STATUS = {
   REJECTED: "rejected",
 };
 
-const arrThunks = [fetchUsers, toggleFollowing];
+const arrThunks = [fetchUsers];
 
 const getActions = (type) => isAnyOf(...arrThunks.map((thunk) => thunk[type]));
 
@@ -35,10 +35,10 @@ const handleFulfilledGet = (state, action) => {
   state.items = action.payload;
 };
 
-const handleFulfilledToggleFollowing = (state, action) => {
-  const index = state.items.findIndex((user) => user.id === action.payload.id);
-  state.items[index] = action.payload;
-};
+// const handleUpdateUser = (state, action) => {
+//   const index = state.items.findIndex((user) => user.id === action.payload.id);
+//   state.items[index] = action.payload;
+// };
 
 const usersSlice = createSlice({
   name: "users",
@@ -49,6 +49,21 @@ const usersSlice = createSlice({
       const item = state.items.find((item) => item.id === itemId);
       if (item) {
         item.followers += 1;
+        fetch(`https://64540bc3e9ac46cedf3665cc.mockapi.io/users/${itemId}`, {
+          method: "PUT", // or PATCH
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ followers: item.followers }),
+        })
+          .then((res) => {
+            console.log(res);
+            if (res.ok) {
+              return res.json();
+            }
+            throw new Error("Error");
+          })
+          .catch((e) => {
+            alert(e);
+          });
       }
     },
     decreaseFollowers: (state, action) => {
@@ -56,6 +71,21 @@ const usersSlice = createSlice({
       const item = state.items.find((item) => item.id === itemId);
       if (item) {
         item.followers -= 1;
+        fetch(`https://64540bc3e9ac46cedf3665cc.mockapi.io/users/${itemId}`, {
+          method: "PUT", // or PATCH
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ followers: item.followers }),
+        })
+          .then((res) => {
+            console.log(res);
+            if (res.ok) {
+              return res.json();
+            }
+            throw new Error("Error");
+          })
+          .catch((e) => {
+            alert(e);
+          });
       }
     },
   },
@@ -63,7 +93,7 @@ const usersSlice = createSlice({
     const { FULFILLED, REJECTED, PENDING } = STATUS;
     builder
       .addCase(fetchUsers.fulfilled, handleFulfilledGet)
-      .addCase(toggleFollowing.fulfilled, handleFulfilledToggleFollowing)
+      // .addCase(updateUser.fulfilled, handleUpdateUser)
       .addMatcher(getActions(PENDING), handlePending)
       .addMatcher(getActions(REJECTED), handleRejected)
       .addMatcher(getActions(FULFILLED), handleFulfilled);

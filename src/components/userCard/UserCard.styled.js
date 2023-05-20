@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 export const CardBackground = styled.li`
   position: relative;
   width: 380px;
-  height: 460px;
+  height: 432px;
   margin-left: auto;
   margin-right: auto;
   padding-top: 28px;
@@ -36,6 +36,7 @@ export const TextTweets = styled.p`
 
 export const TextFollowers = styled.p`
   margin-top: 16px;
+  margin-bottom: 0;
   font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -112,4 +113,17 @@ export const FrameContainer = styled.div`
   left: 150px;
   width: 80px;
   height: 80px;
+`;
+
+export const AvatarContainer = styled.div`
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  left: 12px;
+  top: 8px;
+`;
+
+export const Avatar = styled.img`
+  border-radius: 50%;
 `;

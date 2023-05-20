@@ -3,6 +3,7 @@ import { selectUsersWithFollowerOf } from "../../redux/selectors";
 import { useEffect } from "react";
 import { fetchUsers } from "../../redux/operations";
 import { UserCard } from "../userCard/UserCard";
+import { MainContainer } from "./UsersList.styled";
 
 const UserstList = () => {
   const usersWithFollowerOf = useSelector(selectUsersWithFollowerOf);
@@ -13,7 +14,7 @@ const UserstList = () => {
   }, [dispatch]);
 
   return (
-    <ul>
+    <MainContainer>
       {usersWithFollowerOf &&
         usersWithFollowerOf.map(
           ({ id, tweets, followers, avatar, isFollow }) => (
@@ -27,7 +28,7 @@ const UserstList = () => {
             />
           )
         )}
-    </ul>
+    </MainContainer>
   );
 };
 

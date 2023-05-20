@@ -32,7 +32,7 @@ const handleFulfilled = (state) => {
 };
 
 const handleFulfilledGet = (state, action) => {
-  state.items = action.payload;
+  state.items = [...state.items, ...action.payload];
 };
 
 // const handleUpdateUser = (state, action) => {

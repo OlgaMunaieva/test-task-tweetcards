@@ -20,6 +20,52 @@ export const CardBackground = styled.li`
   border-radius: 20px;
 `;
 
+export const LogoContainer = styled.div`
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 76px;
+  height: 22px;
+`;
+
+export const BackgroundPicture = styled.img`
+  width: 308px;
+  height: 168px;
+  justify-items: center;
+
+  object-fit: cover;
+`;
+export const Line = styled.div`
+  width: 100%;
+  height: 8px;
+  margin-top: 18px;
+
+  background: #ebd8ff;
+  box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.06),
+    inset 0px -1.71846px 3.43693px #ae7be3, inset 0px 3.43693px 2.5777px #fbf8ff;
+`;
+
+export const FrameContainer = styled.div`
+  position: absolute;
+  top: 190px;
+  left: 150px;
+  width: 80px;
+  height: 80px;
+`;
+
+export const AvatarContainer = styled.div`
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  left: 12px;
+  top: 8px;
+`;
+
+export const Avatar = styled.img`
+  border-radius: 50%;
+`;
+
 export const TextTweets = styled.p`
   margin-top: 62px;
   font-family: "Montserrat", sans-serif;
@@ -49,41 +95,6 @@ export const TextFollowers = styled.p`
   color: #ebd8ff;
 `;
 
-export const BackgroundPicture = styled.img`
-  width: 308px;
-  height: 168px;
-  justify-items: center;
-
-  object-fit: cover;
-`;
-
-export const LogoContainer = styled.div`
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 76px;
-  height: 22px;
-`;
-
-export const Logo = styled.img`
-  top: 20px;
-  left: 20px;
-  width: 76px;
-  height: 22px;
-
-  object-fit: cover;
-`;
-
-export const Line = styled.div`
-  width: 100%;
-  height: 8px;
-  margin-top: 18px;
-
-  background: #ebd8ff;
-  box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.06),
-    inset 0px -1.71846px 3.43693px #ae7be3, inset 0px 3.43693px 2.5777px #fbf8ff;
-`;
-
 export const Button = styled.button`
   margin-top: 26px;
   /* display: block; */
@@ -105,25 +116,4 @@ export const Button = styled.button`
   /* #ebd8ff; */
   box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.25);
   border-radius: 10.3108px;
-`;
-
-export const FrameContainer = styled.div`
-  position: absolute;
-  top: 190px;
-  left: 150px;
-  width: 80px;
-  height: 80px;
-`;
-
-export const AvatarContainer = styled.div`
-  position: absolute;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  left: 12px;
-  top: 8px;
-`;
-
-export const Avatar = styled.img`
-  border-radius: 50%;
 `;

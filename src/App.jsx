@@ -1,13 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import { UserCard } from "./components/userCard/UserCard";
-import UserstList from "./components/usersList/UsersList";
+import UsersList from "./components/usersList/UsersList";
 import logo from "./images/logo.png";
+import { useDispatch, useSelector } from "react-redux";
+import { selectIsLoading, selectUsersWithFollowerOf } from "./redux/selectors";
+import { PER_PAGE } from "./redux/operations";
+import Button from "./components/button/Button";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [page, setPage] = useState(1);
+  const users = useSelector(selectUsersWithFollowerOf);
+  const isLoading = useSelector(selectIsLoading);
+
+  console.log(page);
+  console.log(users);
+  console.log(isLoading);
+
+  const isShowButton = users.length && !isLoading && !(users.length % PER_PAGE);
+  // users.length && !isLoading && !(users.length % PER_PAGE);
+  const nextPage = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
 
   return (
     <>
@@ -25,19 +40,8 @@ function App() {
           />
         </a>
       </div>
-      {/* <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p> */}
-      <UserstList />
+      <UsersList page={page} />
+      {isShowButton === true && <Button onClick={nextPage} />}
     </>
   );
 }

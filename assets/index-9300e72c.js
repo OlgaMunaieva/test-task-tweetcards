@@ -76,9 +76,11 @@ Error generating stack: `+i.message+`
   padding: 20px;
 `,Tw=Ee.nav`
   display: flex;
-  gap: 100px;
+  justify-content: space-between;
+  /* gap: 100px; */
   & a {
-    padding-left: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
     text-decoration-line: none;
   }
   & .active {

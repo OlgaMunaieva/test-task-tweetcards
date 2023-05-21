@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const Header = styled.header`
+  /* position: fixed; */
+  /* z-index: 99; */
   padding: 20px;
   font-size: 38px;
   box-shadow: rgb(0 0 0 / 20%) 0px 9px 9px -6px,
@@ -8,6 +10,7 @@ export const Header = styled.header`
 `;
 
 export const Main = styled.main`
+  /* margin-top: 60px; */
   padding: 20px;
 `;
 

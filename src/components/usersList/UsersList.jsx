@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectUsersWithFollowerOf } from "../../redux/selectors";
 import { UserCard } from "../userCard/UserCard";
 import { MainContainer } from "./UsersList.styled";

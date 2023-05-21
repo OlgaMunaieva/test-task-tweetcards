@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectIsLoading,
@@ -10,8 +10,12 @@ import UsersList from "../components/usersList/UsersList";
 import { Button } from "../components/button/Button";
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
 import { clearUsers } from "../redux/usersSlice";
+import { LinkButton } from "../components/linkButton/LinkButton.styled";
 
 export const Tweets = () => {
+  const location = useLocation();
+  console.log(location);
+  const backLinkLocation = useRef(location.state?.from ?? `/`);
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = searchParams.get("currentPage") ?? "";
   //   const location = useLocation();
@@ -68,6 +72,7 @@ export const Tweets = () => {
 
   return (
     <>
+      <LinkButton to={backLinkLocation.current}>Go back</LinkButton>
       <UsersList />
       {isShowButton === true && <Button onClick={nextPage} />}
     </>

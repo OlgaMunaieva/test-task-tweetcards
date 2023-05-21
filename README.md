@@ -1,5 +1,5 @@
 # test-task-tweetcards
-Tweet card app with the ability to follow users you like
+## Tweet card app with the ability to follow users you like
 Each user of this application who receives the link can follow users already registered in the application.
 To do this, follow the link to the home page and select "Tweets" from the menu.
 On the "Twits" page you will see 6 cards of registered users and you can click on the "Follow" button to follow the user.

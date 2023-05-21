@@ -44,6 +44,9 @@ const usersSlice = createSlice({
   name: "users",
   initialState: initialState,
   reducers: {
+    clearUsers: (state) => {
+      state.items = [];
+    },
     increaseFollowers: (state, action) => {
       const itemId = action.payload;
       const item = state.items.find((item) => item.id === itemId);
@@ -100,5 +103,6 @@ const usersSlice = createSlice({
   },
 });
 
-export const { increaseFollowers, decreaseFollowers } = usersSlice.actions;
+export const { increaseFollowers, decreaseFollowers, clearUsers } =
+  usersSlice.actions;
 export const usersReducer = usersSlice.reducer;

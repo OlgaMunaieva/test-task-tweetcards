@@ -9,9 +9,10 @@ import { MainContainer } from "./UsersList.styled";
 // import installHook from "../../redux/installHook";
 
 const UsersList = () => {
-  // const location = useLocation();
+  const location = useLocation();
+  // console.log(location);
   const usersWithFollowerOf = useSelector(selectUsersWithFollowerOf);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   return (
     <MainContainer>

@@ -3,7 +3,7 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://64540bc3e9ac46cedf3665cc.mockapi.io";
 
-export const PER_PAGE = 3;
+export const PER_PAGE = 6;
 
 export const fetchUsers = createAsyncThunk(
   "users/fetchAll",

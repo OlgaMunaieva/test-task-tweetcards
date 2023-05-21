@@ -7,4 +7,4 @@ The button will change color and name to "Following", and your vote will count t
 If you want to unsubscribe to the selected user, then click on the button again and the subscription will be canceled.\
 If you want to find even more users, then click on the "Load more" button and 6 more user cards will appear on the page.\
 You can always get back to the home page by clicking on the "back" button.\
-If the connection fails, your usernames will be saved.\
+If the connection fails, your usernames will be saved.

@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { fetchUsers, updateUser } from "./operations";
+import { fetchUsers } from "./operations";
 
 const STATUS = {
   PENDING: "pending",
@@ -35,11 +35,6 @@ const handleFulfilledGet = (state, action) => {
   state.items = [...state.items, ...action.payload];
 };
 
-// const handleUpdateUser = (state, action) => {
-//   const index = state.items.findIndex((user) => user.id === action.payload.id);
-//   state.items[index] = action.payload;
-// };
-
 const usersSlice = createSlice({
   name: "users",
   initialState: initialState,
@@ -58,7 +53,6 @@ const usersSlice = createSlice({
           body: JSON.stringify({ followers: item.followers }),
         })
           .then((res) => {
-            console.log(res);
             if (res.ok) {
               return res.json();
             }
@@ -80,7 +74,6 @@ const usersSlice = createSlice({
           body: JSON.stringify({ followers: item.followers }),
         })
           .then((res) => {
-            console.log(res);
             if (res.ok) {
               return res.json();
             }
@@ -96,7 +89,6 @@ const usersSlice = createSlice({
     const { FULFILLED, REJECTED, PENDING } = STATUS;
     builder
       .addCase(fetchUsers.fulfilled, handleFulfilledGet)
-      // .addCase(updateUser.fulfilled, handleUpdateUser)
       .addMatcher(getActions(PENDING), handlePending)
       .addMatcher(getActions(REJECTED), handleRejected)
       .addMatcher(getActions(FULFILLED), handleFulfilled);

@@ -1,26 +1,24 @@
 import { useSelector } from "react-redux";
-import { selectUsersWithFollowerOf } from "../../redux/selectors";
+import { selectModifiedUsers } from "../../redux/selectors";
 import { UserCard } from "../userCard/UserCard";
 import { MainContainer } from "./UsersList.styled";
 
 const UsersList = () => {
-  const usersWithFollowerOf = useSelector(selectUsersWithFollowerOf);
+  const modifiedUsers = useSelector(selectModifiedUsers);
 
   return (
     <MainContainer>
-      {usersWithFollowerOf &&
-        usersWithFollowerOf.map(
-          ({ id, tweets, followers, avatar, isFollow }) => (
-            <UserCard
-              key={id}
-              tweets={tweets}
-              followers={followers}
-              avatar={avatar}
-              id={id}
-              isFollow={isFollow}
-            />
-          )
-        )}
+      {modifiedUsers &&
+        modifiedUsers.map(({ id, tweets, followers, avatar, isFollow }) => (
+          <UserCard
+            key={id}
+            tweets={tweets}
+            followers={followers}
+            avatar={avatar}
+            id={id}
+            isFollow={isFollow}
+          />
+        ))}
     </MainContainer>
   );
 };

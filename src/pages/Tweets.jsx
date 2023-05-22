@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectIsLoading,
   selectUsers,
-  selectUsersWithFollowerOf,
+  selectModifiedUsers,
 } from "../redux/selectors";
 import { PER_PAGE, fetchUsers } from "../redux/operations";
 import UsersList from "../components/usersList/UsersList";
@@ -17,13 +17,13 @@ export const Tweets = () => {
   const backLinkLocation = useRef(location.state?.from ?? `/`);
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = searchParams.get("currentPage") ?? "";
-  const usersWithFollowerOf = useSelector(selectUsersWithFollowerOf);
+  const modifiedUsers = useSelector(selectModifiedUsers);
   const users = useSelector(selectUsers);
   const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (usersWithFollowerOf.length && !currentPage) {
+    if (modifiedUsers.length && !currentPage) {
       dispatch(clearUsers());
       setSearchParams({ currentPage: 1 });
       return;

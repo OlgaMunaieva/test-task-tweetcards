@@ -6,13 +6,13 @@ export const selectError = (state) => state.users.error;
 
 export const selectFollowerOf = (state) => state.followerOf;
 
-export const selectUsersWithFollowerOf = createSelector(
+export const selectModifiedUsers = createSelector(
   [selectUsers, selectFollowerOf],
   (users, followerOf) => {
-    const usersWithFollowerOf = users.map((user) => ({
+    const modifiedUsers = users.map((user) => ({
       ...user,
       isFollow: followerOf.includes(user.id),
     }));
-    return usersWithFollowerOf;
+    return modifiedUsers;
   }
 );
